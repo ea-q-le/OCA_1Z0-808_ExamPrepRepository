@@ -1,2 +1,467 @@
  Q1:   What is the result of the following program?
+       class Product {
+         double price;
+       }
+       public class A1 {
+         public void updatePrice(Product product, double price) {
+           price = price * 2;
+           product.price = product.price + price;
+         }
+         public static void main(String[] args) {
+           Product prt = new Product();
+           prt.price = 200;
+           double newPrice = 100;
+           
+           A1 t = new A1();
+           t.updatePrice(prt, newPrice);
+           System.out.println(prt.price + " : " + newPrice);
+         }
+       }
+      A. 200.0 : 100.0
+      B. 400.0 : 200.0
+      C. 400.0 : 100.0
+      D. Compilation fails
+      
+ Q2:   What is the output of the following code?
+       public void main(String[] args) {
+         int aVar = 9;
+         
+         if (aVar++ < 10) {
+           System.out.println(aVar + " Hello World!");
+         } else {
+           System.out.println(aVar + " Hello Universe!");
+         }
+       }
+      A. 10 Hello World!
+      B. Hello Universe!
+      C. Hello World!
+      D. Compilation fails
+      
+ Q3:   What is the result of the following code?
+       public static void main(String[] args) {
+         String date = LocalDate.parse("2014-05-04").format(DateTimeFormatter.ISO_DATE_TIME);
+         System.out.println(date);
+       }
+      A. May 04, 2014T00:00:00.000
+      B. 2014-05T00:00:00.000
+      C. 5/4/14T00:00:00.000
+      D. An exception is thrown at runtime
+      
+ Q4:   What is the result of the following code?
+       public static void main(String[] args) {
+         Short s1 = 200;
+         Integer s2 = 400;
+         Long s3 = (long) s1 + s2;  // LINE N1
+         String s4 = (String) (s3 * s2);  // LINE N2
+         System.out.println("Sum is " + s4);
+       }
+      A. Sum is 600
+      B. Compilation fails at line n1
+      C. Compilation fails at line n2
+      D. A ClassCastException is thrown at line n1
+      E. A ClassCastException is thrown at line n2
+      
+ Q5:   What is the name of the java concept that uses access modifiers to protect variables 
+       and hide them within a class?
+      A. Encapsulation
+      B. Inheritance
+      C. Abstraction
+      D. Instantiation
+      E. Polymorphism
+      
+ Q6:   Which two modifications, made independently, enable the following code to compile?
+       abstract class Planet {
+         protected void resolve() {  // LINE N1
+         }
+         abstract void rotate();  // LINE N2
+       }
+       class Earth extends Planet { 
+         void resolve() {  // LINE N3
+         }
+         protected void rotate() {  // LINE N4
+         }
+       }
+      A. Make the method at line n1 public
+      B. Make the method at line n2 public
+      C. Make the method at line n3 public
+      D. Make the method at line n3 protected
+      E. Make the method at line n4 public
+      
+ Q7:   Given the following:
+       class Vehicle {
+         String type = "4W";
+         int maxSpeed = 100;
+         
+         Vehicle(String type, int maxSpeed) {
+           this.type = type;
+           this.maxSpeed = maxSpeed;
+         }
+       }
+       class Car extends Vehicle {
+         String trans;
+         Car(String trans) {  // LINE N1
+           this.trans = trans;
+         }
+         Car(String type, int maxSpeed, String trans) {
+           super(type, maxSpeed);
+           this(trans);  // LINE N2
+         }
+       }
        
+       And given the following code fragment;
+       Car c1 = new Car("Auto");
+       Car c2 = new Car("4W", 150, "Manual");
+       System.out.println(c1.type + " " + c1.maxSpeed + " " + c1.trans);
+       System.out.println(c2.type + " " + c2.maxSpeed + " " + c2.trans);
+       
+       What is the output?
+      A. 4W 100 Auto
+         4W 150 Manual
+      B. Null 0 Auto
+         4W 150 Manual
+      C. Compilation fails only at line n1
+      D. Compilation fails only at line n2
+      E. Compilation fails at both line n1 and line n2
+      
+ Q8:   Given following code?
+       1:  class X {
+       2:    public void printFileContent() {
+       3:      /* code goes here */
+       4:      throw new IOException();
+       5:    }
+       6:  }
+       7:  public class test {
+       8:    public static void main(String[] args) {
+       9:      X xobj = new X();
+       10:     xobj.printFileContent();
+       11:   }
+       12: }
+       
+       Which two of the following modifications should you make to have the code compile?
+       a. Replace line 8 with public static void main(String[] args) throws Exception {
+       b. Replace line 10 with:
+          try {
+            xobj.printFileContent();
+          } catch (Exception e) {}
+            catch (IOException e) {}
+       c. Replace line 2 with public void printFileContent() throws IOException {
+       d. Replace line 4 with throw IOException("Exception raised");
+       e. At line 11 insert throw new IOException();
+       
+       Choose options:
+      A. Option a
+      B. Option b
+      C. Option c
+      D. Option d
+      E. Option e
+      
+ Q9:   Given the following:
+       public class Customer {
+         ElectricAccount acct = new ElectricAccount();
+         public void useelecticity(double kWh) {
+           acct.addKWh(kWh);
+         }
+       }
+       public class ElectricAccount {
+         private double kWh;
+         private double rate = 0.7;
+         private double bill;
+         // LINE N1
+       }
+      
+       How should you write methods in the ElectricAccount class at LINE N1 so that the member
+       variable bill is always equal to the value of the member variable kwh multiplied by the
+       member variable rate?
+       Any amount of electricity used by a customer (represented by an instance of the customer 
+       class) must contribute to the customer's bill (represented by the member variable bill)
+       through the method usedElectricity method. An instance of the customer class should
+       never be able to tamper with or decrease the value of the member variable bill.
+       A. public void addKWh(double kWh) {
+            this.kWh += kWh;
+            this.bill = this.kWh * this.rate;
+          }
+       B. public void addKWh(double kWh) {
+            if (kWh > 0) {
+              this.kWh += kWh;
+              this.bill = this.kWh * this.rate;
+            }
+          }
+       C. private void addKWh(double kWh) {
+            if (kWh > 0) {
+              this.kWh += kWh;
+              this.bill = this.kWh * this.rate;
+            }
+          }
+       D. public void addKWh(double kWh) {
+            if (kWh > 0) {
+              this.kWh += kWh;
+              setBill(this.kWh);
+            }
+          }
+          public void setBill(double kWh) {
+            bill = kWh * rate;
+          }
+       Choose options
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      
+ Q10:  What is the result of the following code snippet?
+       public static void main(String[] args) {
+         StringBuilder sb = new StringBuilder();
+         String s = "";
+         
+         if(sb.equals(s)) {
+           System.out.println("Match 1");
+         } else if(sb.toString().equals(s.toString())) {
+           System.out.println("Match 2");
+         } else {
+           System.out.println("No Match");
+         }
+       }
+      A. Match 1
+      B. Match 2
+      C. No Match
+      D. A NullPointerException is thrown at runtime
+      
+ Q11:  Given:
+       interface Readable {
+         public void readBook();
+         public void setBookMark();
+       }
+       abstract class Book implements Readable {  // LINE N1
+         public void readBook() {
+           // LINE N2
+         }
+       }
+       class EBook extends Book {  // LINE N3
+         public void readBook() {}
+         // LINE N4
+       }
+       
+       Which option enables the code to compile?
+       A. Replace the code fragment at line N1 with:
+            class Book implements Readable {
+       B. At line N2 insert:
+            public abstract void setBookmark();
+       C. Replace the code at line N3 with:
+            abstract class EBook extends Book {
+       D. At line N4 insert:
+            public void setBookMark() {}
+       
+       Choose option:
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      
+ Q12:  What is the result of the following code?
+       public static void main(String[] args) {
+         String ta = "A ";
+         ta = ta.concat("B ");
+         String tb = "C ";
+         ta = ta.concat(tb);
+         ta.replace('C', 'D');
+         ta = ta.concat(tb);
+         System.out.println(ta);
+       }
+      A. A B C D
+      B. A C D
+      C. A B C C
+      D. A B D C
+      
+ Q13:  Given:
+       class CD {
+         int r;
+         CD(int r) {
+           this.r = r;
+         }
+       }
+       class DVD extends CD {
+         int c;
+         DVD(int r, int c) {
+           // LINE N1
+         }
+       }
+       
+       And given the code fragment:
+       DVD dvd = new DVD(10, 20);
+       
+       Which code fragment should you use at line N1 to instantiate the dvd object successfully?
+       A. super.r = r;
+          this.c = c;
+       B. super(r);
+          this(c);
+       C. super(r);
+          this.c = c;
+       D. this.c = r;
+          super(c);
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      
+ Q14:  Given the code fragment:
+       int a[] = {1, 2, 3, 4, 5};
+       for( XXX ) {
+         System.out.print(a[e]);
+       }
+       
+       Which option can replace XXX to enable the code to print 135?
+      A. int e = 0; e <= 4; e++
+      B. int e = 0; e < 5; e += 2
+      C. int e = 1; e <= 5; e += 1
+      D. int e = 1; e < 5; e += 2
+      
+ Q15:  Which statement best decribes Encapsulation?
+      A. Encapsulation ensures that classes can be designed so that only certain fields and methods
+         of an object are accessible from other objects
+      B. Encapsulation ensures that classes can be designed so that their methods are inheritable
+      C. Encapsulation ensures that classes can be designed with some fields and methods declared
+         as abstract
+      D. Encapsulation ensures that classes can be designed so that if a method has an argument 
+         Mytype x, any subclass of Mytype can be passed to that method
+         
+ Q16:  Given the code fragment from three files:
+       Salesman.java:
+       package sales;
+       public class Salesman {}
+       
+       Product.java
+       package sales.products;
+       public class Product{}
+       
+       Market.java
+       package market;
+       // INSERT CODE HERE
+       public class USMarket {
+         Salesman sm;
+         Product p;
+       }
+       
+       Which code fragment, when inserted at line 2, enables the code to compile?
+       A. import sales.*;
+       B. import java.sales.products.*;
+       C. import sales;
+          import sales.products;
+       D. import sales.*;
+          import products.*;
+       E. import sales.*;
+          import sales.products.*;
+          
+       Choose options:
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      E. Option E
+      
+ Q17:  Given the following class:
+       public class CheckingAccount {
+         public int amount;
+         public CheckingAccount(int amount) {
+           this.amount = amount;
+         }
+         public int getAmount() {
+           return amount;
+         }
+         public void changeAmount(int x) {
+           amount += x;
+         }
+       }
+       
+       And given the following main method, located in another class:
+       public static void main(String[] args) {
+         CheckingAccount acct = new CheckingAccount((int)(Math.random() * 100));
+         // LINE N1
+         System.out.println(acct.getAmount());
+       }
+       
+       Which three lines when inserted independently at line N1, cause the program to 
+       print a 0 balance?
+       A. this.amount = 0;
+       B. amount = 0;
+       C. acct(0);
+       D. acct.amount = 0;
+       E. acct.getAmount() = 0;
+       F. acct.getAmount(0);
+       G. acct.getAmount(-acct.amount);
+       H. acct.getAmount(-acct.getAmount());
+       
+ Q18:  Given the code fragment;
+       String shirts[][] = new String[2][2];
+       shirts[0][0] = "red";
+       shirts[0][1] = "blue";
+       shirts[1][0] = "small";
+       shirts[1][1] = "medium";
+       
+       Which code fragment prints red: blue: small: medium?
+       A. for (int index = 1; index < 2; index++) {
+            for (int idx = 1; idx < 2; idx++) {
+              System.out.print(shirts[index][idx] + ": ");
+            }
+          }
+       B. for (int index = 0; index < 2; ++index) {
+            for (int idx = 0; idx < index; ++idx) {
+              System.out.print(shirts[index][idx] + ": ");
+            }
+          }
+       C. for (String c : colors) {
+            for (String s : sizes) {
+              System.out.print(s + ": ");
+            }
+          }
+       D. for (int index = 0; index < 2; ) {
+            for (int idx = 0; idx < 2; ) {
+              System.out.print(shirts[index][idx] + ": ");
+              idx++;
+            }
+            index++;
+          }
+       Choose options:
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      
+ Q19:  What is the result of the following code?
+       public class Test {
+         void readCard(int cardNo) throws Exception {
+           System.out.println("Reading card");
+         }
+         void checkCard(int cardNo) throws RuntimeException { // LINE N1
+           System.out.println("Checking card");
+         }
+         public static void main(String[] args) {
+           Test ex = new Test();
+           int cardNo = 12344;
+           ex.checkCard(cardNo);  // LINE N2
+           ex.readCard(carNo);  // LINE N3
+         }
+       }
+      A. Reading Card
+         Checking Card
+      B. Compilation fails only at line n1
+      C. Compilation fails only at line n2
+      D. Compilation fails only at line n3
+      E. Compilation fails only at line n2 and line n3
+      
+ Q20:  Given:
+       3:  public static void main(String[] agrs) {
+       4:    int x = 5;
+       5:    while(isAvailable(x)) {
+       6:      System.out.println(x); 
+       7: 
+       8:    }
+       9:  }
+       10: 
+       11: public static boolean isAvailable(int x) {
+       12:   return x-- > 0 ? true : false;
+       13: }
+       
+       Which modification enables the code to print 54321?
+      A. Replace line 6 with System.out.print(--x);
+      B. At line 7, insert x--;
+      C. Replace line 6 with --x; and at line 7, insert System.out.print(x)
+      D. Replace line 12 with return (x>0)?false:true
