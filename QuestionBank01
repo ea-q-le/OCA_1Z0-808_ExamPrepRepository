@@ -791,3 +791,222 @@
          date3 = Jun 20, 2014
       C. Compilation fails
       D. A DateParseException is thrown at runtime
+
+ Q36:  Given
+       7:  StringBuilder sb1 =  new StringBuilder("Duke");
+       8:  String str1 = sb1.toString();
+       9:  // INSERT CODE HERE
+       10: System.out.print(str1 == str2);
+       Which code fragment, when inserted at line 9, enables the code to print true?
+      A. String str2 = str1;
+      B. String str2 = new String(str1);
+      C. String str2 = sb1.toString();
+      D. String str2 = "Duke";
+      
+ Q37:  Given the code fragment:
+       public class Test {
+         static int count = 0;
+         int i = 0;
+         public void changeCount() {
+           while(i < 5) {
+             i++;
+             count++;
+           }
+         }
+         public static void main(String[] args) {
+           Test check1 = new Test();
+           Test check2 = new Test();
+           check1.changeCount();
+           check2.changeCount();
+           System.out.print(check1.count + " : " + check2.count);
+         }
+       }
+       What is the result?
+      A. 10 : 10
+      B. 5 : 5
+      C. 5 : 10
+      D. Compilation fails
+      
+ Q38:  Given the code fragment
+       public static void main(String[] args) {
+         double discount = 0;
+         int qty = Integer.parseInt(args[0]);
+         // LINE N1
+       }
+       
+       And given the requirements:
+       * If the value of the qty variable is greater than or equal to 90, discount = 0.5
+       * If the value of the qty variable is between 80 and 90, discount = 0.2
+       
+       Which two code fragments can be independently placed at line N1 to meet the requirements?
+       A. if (qty >= 90) { discount = 0.5; }
+          if (qty > 80 && qty < 90) { discount = 0.2; }
+       B. discount = (qty >= 90) ? 0.5 : 0;
+          discount = (qty > 80) ? 0.2 : 0;
+       C. discount = (qty >= 90) ? 0.5 : (qty > 80) ? 0.2 : 0;
+       D. if (qty > 80 && qty < 90) {
+            discount = 0.2;
+          } else {
+            discount = 0;
+          }
+          if (qty >= 90) {
+            discount = 0.5;
+          } else {
+            discount = 0;
+          }
+       E. discount = (qty > 80) ? 0.2 : (qty >= 90) ? 0.5 : 0;
+       
+ Q39:  Given:
+       public class Test {
+         public static void main(String[] args) {
+           if (args[0].equals("Hello") ? false : true) {
+             System.out.print("Success");
+           } else {
+             System.out.print("Failure");
+           }
+         }
+       }
+       And given the commands:
+       javac Test.java
+       java Test Hello
+       
+       What is the result?
+      A. Success
+      B. Failure
+      C. Compilation error
+      D. An exception is thrown at runtime
+      
+ Q40:  Which three statements describe the object-oriented features of the Java language?
+      A. Objects cannot be reused
+      B. A subclass can inherit from a superclass
+      C. Objects can share behaviors with other objects
+      D. A package must contain more than one class
+      E. Object is the root class of all other objects
+      F. A main method must be declared in every class
+      
+ Q41:  Given the following code:
+       public static void main(String[] args) {
+         String[] planets = {"Mercury", "Venus", "Earth", "Mars"};
+         System.out.println(planets.length);
+         System.out.println(planets[1].length());
+       }
+       What is the output?
+      A. 4  4
+      B. 3  5
+      C. 4  7
+      D. 5  4
+      E. 4  5
+      F. 4  21
+      
+ Q42:  You are developing a banking module. You have developed a class named CCMask that
+       has a maskCC method. 
+       Given the code fragment:
+       class CCMask {
+         public static String maskCC(String creditCard) {
+           String x = "XXXX-XXXX-XXXX-";
+           // LINE N1
+         }
+         public static void main(String[] args) {
+           System.out.println(maskCC("1234-5678-9101-1121"));
+         }
+       }
+       You must ensure that the maskCC method returns a string that hides all digits of the credit
+       card number except the four last digits (and the hypens that separate each group of four digits).
+       
+       Which two code fragments should you use at line N1, independently, to achieve this requirement?
+      A. StringBuilder sb = new StringBuilder(creditCard);
+         sb.substring(15, 19);
+         return x + sb;
+      B. return x + creditCard.substring(15, 19);
+      C. StringBuilder sb = new StringBuilder(x);
+         sb.append(creditCard, 15, 19);
+         return sb.toString();
+      D. StringBuilder sb = new StringBuilder(creditCard);
+         StringBuilder s = sb.insert(0, x);
+         return s.toString();
+         
+ Q43:  Given:
+       package p1;
+       public class Acc {
+         int p;
+         private int q;
+         protected int r;
+         public int s;
+       }
+       
+       Test.java
+       package p2;
+       import p1.Acc;
+       public class Test extends Acc {
+         public static void main(String[] args) {
+           Acc obj = new Test();
+         }
+       }
+       Which statement is true?
+     A. Both p and s are accessible by obj
+     B. Only s is accessible by obj
+     C. Both r and s are accessible by obj
+     D. p, r, and s are accessible by the obj
+     
+ Q44:  Given:
+       Base.java:
+       class Base {
+         public void test() {
+           System.out.println("Base ");
+         }
+       }
+       
+       DerivedA.java:
+       class DerivedA extends Base {
+         public void test() {
+           System.out.println("DerivedA ");
+         }
+       }
+       
+       DerivedB.java:
+       class DerivedB extends DerivedA {
+         public void test() {
+           System.out.println("DerivedB ");
+         }
+         public static void main(String[] args) {
+           Base b1 = new DerivedB();
+           Base b2 = new DerivedA();
+           Base b3 = new DerivedB();
+           b1 = (Base)b3;
+           Base b4 = (DerivedA)b3;
+           b1.test();
+           b4.test();
+         }
+       }
+       What is the result?
+      A. Base  DerivedA
+      B. Base  DerivedB
+      C. DerivedB  DerivedB
+      D. DerivedB  DerivedA
+      E. A ClassCastException is thrown at runtime
+      
+ Q45:  Given the code fragment:
+       public static void main(String[] args) {
+         ArrayList myList = new ArrayList();
+         String[] myArray;
+         try {
+           while(true) {
+             myList.add("My String");
+           }
+         } catch(RuntimeException re) {
+           System.out.println("Caught a RuntimeException");
+         } catch(Exception e) {
+           System.out.println("Caught an Exception");
+         }
+         System.out.println("Ready to use");
+       }
+       What is the result?
+      A. Exception terminates in the first catch statement, and Caught a RuntimeException
+         is printed to the console
+      B. Execution terminates in the second catch statement, and Caught an Exception
+         is printed to the console
+      C. A runtime error is thrown in the thread "main"
+      D. Execution completes normally and Ready to use is printed to the console
+      E. The code fails to compile because a throws keyword is required
+      
+ Q46:  Given:
