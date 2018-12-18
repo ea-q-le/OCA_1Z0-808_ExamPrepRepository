@@ -465,3 +465,329 @@
       B. At line 7, insert x--;
       C. Replace line 6 with --x; and at line 7, insert System.out.print(x)
       D. Replace line 12 with return (x>0)?false:true
+
+ Q21:  Given:
+       4:  public static void main(String[] agrs) {
+       5:    boolean opt = true;
+       6:    switch (opt) {
+       7:      case true:
+       8:        System.out.print("True");
+       9:        break;
+       10:     default:
+       11:       System.out.print("***");
+       12:   }
+       13:   System.out.println("Done");
+       14: }
+       
+       Which modification enables the code fragment to print TrueDone?
+      A. Replace line 5 with String opt = "true"
+         Replace line 7 with case "true"
+      B. Replace line 5 with boolean opt = 1;
+         Replace line 7 with case 1 =
+      C. At line 9, remove the break statement
+      D. Remove the default section
+      
+ Q22:  Given the following main method:
+       public static void main(String[] args) {
+         int num = 5;
+         do {
+           System.out.print(num-- + " ");
+         } while(num == 0);
+       }
+       
+       What is the result?
+      A. 543210
+      B. 54321
+      C. 421
+      D. 5
+      E. Nothing is printed
+      
+ Q23:  Given the code fragment
+       public static void main(String[] args) {
+         int x = 100;
+         int a = x++;
+         int b = ++x;
+         int c = x++;
+         int d = (a<b) ? (a<c) ? a : (b<c) ? b : c;
+         System.out.println(d);
+       }
+       What is the result?
+      A. 100
+      B. 101
+      C. 102
+      D. 103
+      E. Compilation fails
+      
+ Q24:  What is the output of the following code snippet?
+       public class Test {
+         public static void main(String[] args) {
+           String[][] chs = new String[2][];
+           chs[0] = new String[2];
+           chs[1] = new String[5];
+           int i = 97;
+           
+           for (int a = 0; a < chs.length; a++) {
+             for (int b = 0; b < chs.length; b++) {
+               chs[a][b] = " " + i;
+               i++;
+             }
+           }
+           for (String[] ca : chs) {
+             for (String c : ca) {
+               System.out.print(c + " ");
+             }
+             System.out.println();
+            }
+          }
+        }
+       A. 97 98
+          99 100 null null null
+       B. 97 98
+          99 100 101 102 103
+       C. Compilation fails
+       D. A NullPointerException thrown at runtime
+       E. An ArrayIndexOutOfBoundsException is thrown at runtime
+       
+ Q25:  Given:
+       public class Employee {
+         String name;
+         boolean contract;
+         double salary;
+         Employee (){
+           // LINE N1
+         }
+         public String toString() {
+           return name + " : " + contract + " : " + salary;
+         }
+         public static void main(String[] args) {
+           Employee e = new Employee();
+           // LINE N2
+           System.out.print(e);
+         }
+       }
+       
+       Which TWO modifications, when made independently, enable the code to print
+       joe : true : 100.0 ?
+       A. Replace line N2 with:
+          e.name = "Joe";
+          e.contract = true;
+          e.salary = 100;
+       B. Replace line N2 with:
+          this.name = "Joe";
+          this.contract = true;
+          this.salary = 100;
+       C. Replace line N1 with:
+          this.name = new String("Joe");
+          this.contract = new Boolean(true);
+          this.salary = new Double(100);
+       D. Replace line N1 with:
+          name = "Joe";
+          contract = TRUE;
+          salary = 100.0f;
+       E. Replace line N1 with:
+          this("Joe",true,100);
+       Choose options:
+      A. Option A
+      B. Option B
+      C. Option C
+      D. Option D
+      E. Option E
+      
+ Q26:  Given the code fragment:
+       public static void main(String[] args) {
+         List<String> names = new ArrayList<>();
+         names.add("Robb");
+         names.add("Bran");
+         names.add("Rick");
+         names.add("Bran");
+         if(names.remove("Bran")) {
+           names.remove("Jon");
+         }
+         System.out.println(names);
+       }
+       
+       What is the result?
+      A. [Robb,Rick,Bran]
+      B. [Robb,Rick]
+      C. [Robb,Bran,Rick,Bran]
+      D. An exception is thrown at runtime
+      
+ Q27:  Given:
+       class A {
+         public A() {
+           System.out.print("A ");
+         }
+       }
+       class B extends A {
+         public B() { // LINE N1
+           System.out.print("B ");
+         }
+       }
+       class C extends B {
+         public C() { // LINE N2
+           System.out.print("C ");
+         }
+         public static void main(String[] args) {
+           C c = new C();
+         }
+       }
+       
+       What is the result?
+      A. C B A
+      B. C
+      C. A B C
+      D. Compilation fails at line N1 and line N2
+      
+ Q28:  What is the output of the following code?
+       class X {
+         static int i;
+         int j;
+         public static void main(String[] args) {
+           X x1 = new X();
+           X x2 = new X();
+           x1.i = 3;
+           x1.j = 4;
+           x2.i = 5;
+           x2.j = 6;
+           System.out.println(
+             x1.i + " " +
+             x1.j + " " +
+             x2.i + " " +
+             x2.j);
+         }
+       }
+      A. 3 4 5 6
+      B. 3 4 3 6 
+      C. 5 4 5 6 
+      D. 3 6 4 6 
+      
+ Q29:  Given:
+       public class Test {
+         public static void main(String[] args) {
+           /* LINE 3 */
+           array[0] = 10;
+           array[1] = 20;
+           System.out.println(array[0] + ":" + array[1]);
+         }
+       }
+       Which code fragment, when inserted at line 3, enables the code to print 10:20?
+      A. int[] array n = new int[2];
+      B. int[] array;
+         array = int[2];
+      C. int array = new int[2];
+      D. int array[2];
+      
+ Q30:  Given the code fragment:
+       public static void main(String[] args) {
+         String[] arr = {"A", "B", "C", "D"};
+         for (int i = 0; i < arr.length; i++) {
+           System.out.print(arr[i] + " ");
+           if (arr[i].equals("C")) {
+             continue;
+           }
+           System.out.println("Work done");
+         }
+       }
+       What is the result?
+      A. A B C Work done
+      B. A B C D Work done
+      C. A Work done
+      D. Compilation fails
+      
+ Q31:  Which three are advantages of the Java exception mechanism?
+      A. Improves the program structure because the error handling code is separated from the
+         normal program function
+      B. Provides a set of standard exceptions that covers all the possible errors
+      C. Improves the program structure because the programmer can choose where to handle exceptions
+      D. Improves the program structure because exceptions must be handled in the method in which
+         they occured
+      E. Allows the creation of new exceptions that are tailored to the particular program being 
+         created
+         
+ Q32:  Given the code from the Greeting.java file:
+       public class Greeting {
+         public static void main(String[] args) {
+           System.out.println("Hello " + args[0]);
+         }
+       }
+       Which of the following command line prompts will print "Hello Duke"?
+      A. javac Greeting
+         java Greeting Duke
+      B. javac Greeting.java Duke
+         java Greeting
+      C. javac Greeting.java
+         java Greeting Duke
+      D. javac Greeting.java
+         java Greeting.class Duke
+         
+ Q33:  Given:
+       class Alpha {
+         int ns;
+         static int s;
+         Alpha(int ns) {
+           if(s < ns) {
+             s = ns;
+             this.ns = ns;
+           }
+         }
+         void doPrint() {
+           System.out.println("ns = " + ns + " s = " + s);
+         }
+       }
+       And,
+       public class TestA {
+         public static void main(String[] args) {
+           Alpha ref1 = new Alpha(50);
+           Alpha ref2 = new Alpha(125);
+           Alpha ref3 = new Alpha(100);
+           ref1.doPrint();
+           ref2.doPrint();
+           ref3.doPrint();
+         }
+       }
+       What is the result?
+      A. ns = 50 s = 125
+         ns = 125 s = 125
+         ns = 100 s = 125
+      B. ns = 50 s = 125
+         ns = 125 s = 125
+         ns = 0 s = 125
+      C. ns = 50 s = 50
+         ns = 125 s = 125
+         ns = 100 s = 100
+      D. ns = 50 s = 50
+         ns = 125 s = 125
+         ns = 0 s = 125
+         
+ Q34:  Given the code fragment:
+       public static void main(String[] args) {
+         int ii = 0;
+         int jj = 7;
+         for (ii = 0; ii < jj - 1; ii = ii + 2) {
+           System.out.print(ii + " ");
+         }
+       }
+       What is the result?
+      A. 2 4
+      B. 0 3 4 6
+      C. 0 2 4
+      D. Compilation fails
+      
+ Q35:  Given the code fragment:
+       LocalDate date1 = LocalDate.now();
+       LocalDate date2 = LocalDate.of(2014, 6, 20);
+       LocalDate date3 = LocalDate.parse("2014-06-20", DateTimeFormatter.ISO_DATE);
+       
+       System.out.print("date1 = " + date1);
+       System.out.print("date2 = " + date2);
+       System.out.print("date3 = " + date3);
+       
+       Assume that the system date is June 20, 2014. What is the result?
+      A. date1 = 2014-06-20
+         date2 = 2014-06-20
+         date3 = 2014-06-20
+      B. date1 = 06/20/2014
+         date2 = 2014-06-20
+         date3 = Jun 20, 2014
+      C. Compilation fails
+      D. A DateParseException is thrown at runtime
