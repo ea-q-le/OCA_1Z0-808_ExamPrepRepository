@@ -1010,3 +1010,1616 @@
       E. The code fails to compile because a throws keyword is required
       
  Q46:  Given:
+       System.out.println("5 + 2 = " + 3 + 4);
+       System.out.println("5 + 2 = " + (3 + 4));
+       What is the result?
+      A. 5 + 2 = 34
+         5 + 2 = 34
+      B. 5 + 2 = 3 + 4
+         5 + 2 = 7
+      C. 7 = 7
+         7 + 7
+      D. 5 + 2 = 34
+         5 + 2 = 7
+         
+ Q47:  Given the code fragments
+       Person.java
+       public class Person {
+         String name;
+         int age;
+         public Person(String n, int a) {
+           name = n;
+           age = a;
+         }
+         public String getName() {
+           return name;
+         }
+         public int getAge() {
+           return age;
+         }
+       }
+       
+       Test.java
+       public static void checkAge(List<Person> list, Predicate<Person> predicate) {
+         for(Person p : list) {
+           if(predicate.test(p)) {
+             System.out.println(p.name + " ");
+           }
+         }
+       }
+       public static void main(String[] args) {
+         List<Person> list = ArrayList.asList(new Person("Hank", 45),
+                                              new Person("Charlie", 40),
+                                              new Person("Smith", 38));
+         // LINE N1
+       }
+       
+       Which code fragment, when inserted at line N1, enables the code to print Hank?
+      A. checkAge(iList, () -> p.getAge() > 40);
+      B. checkAge(iList, Person p -> p.getAge() > 40);
+      C. checkAge(iList, p -> p.getAge() > 40);
+      D. checkAge(iList, (Person p) -> {p.getAge() > 40;});
+      
+ Q48:  Given the code fragment:
+       public static void main(String[] args) {
+         String[][] arr = {{"A", "B", "C"}, {"D", "E"}};
+         for (int i = 0; i < arr.length; i++) {
+           for (int j = 0; j < arr[i].length; j++) {
+             System.out.print(arr[i][j] + " ");
+             if (arr[i][j].equals("B")) {
+               break;
+             }
+           }
+           continue;
+         }
+       }
+       What is the result?
+      A. A B C
+      B. A B C D E
+      C. A B D E
+      D. Compilation fails
+      
+ Q49:  Given the code fragment:
+       public static void main(String[] args) {
+         String str = " ";
+         str.trim();
+         System.out.println(str.equals("") + " " + str.isEmpty());
+       }
+       What is the result?
+      A. true true
+      B. true false
+      C. false false
+      D. false true
+      
+ Q50:  Given the code fragment:
+       public class App {
+         public static void main(String[] args) {
+           String str1 = "Java";
+           String str2 = new String("java");
+           // LINE N1
+           {
+             System.out.println("Equal");
+           } else {
+             System.out.println("Not Equal");
+           }
+         }
+       }
+       Which code fragment when inserted at line N1, enables the App
+       class to print Equal?
+      A. String str3 = str2;
+         if (str1 == str3)
+      B. if (str1.equalsIgnoreCase(str2))
+      C. String str3 = str2;
+         if (str1.equals(str3))
+      D. if (str1.toLowerCase() == str2.toLowerCase())
+      
+ Q51:  Given:
+       public static void doSum(Integer x, Integer y) {
+         System.out.println("Integer sum is " + (x + y));
+       }
+       public static void doSum(double x, double y) {
+         System.out.println("double sum is " + (x + y));
+       }
+       public static void doSum(float x, float y) {
+         System.out.println("float sum is " + (x + y));
+       }
+       public static void doSum(int x, int y) {
+         System.out.println("int sum is " + (x + y));
+       }
+       public static void main(String[] args) {
+         doSum(10, 20);
+         doSum(10.0, 20.0);
+       } 
+       What is the result?
+      A. int sum is 30
+         float sum is 30.0
+      B. int sum is 30
+         double sum is 30.0
+      C. Integer sum is 30
+         double sum is 30.0
+      D. Integer sum is 30
+         float sum is 30.0
+         
+ Q52:  Given the code fragment:
+       String[] strs = new String[2];
+       int idx = 0;
+       for (String s : strs) {
+         strs[idx].concat(" element " + idx);
+         idx++;
+       }
+       for (idx = 0; idx < strs.length; idx++) {
+         System.out.println(strs[idx]);
+       }
+       What is the result?
+      A. Element 0
+         Element 1
+      B. null element 0
+         null element 1
+      C. null
+         null
+      D. A NullPointerExceptioin is thrown at runtime
+      
+ Q53:  Given:
+       class Vehicle { // LINE N1
+         int x;
+         Vehicle() {
+           this(10);
+         }
+         Vehicle(int x) {
+           this.x = x;
+         }
+       }
+       class Car extends Vehicle {
+         int y;
+         Car(){
+           super();
+           this(20);  // LINE N2
+         }
+         Car(int y) {
+           this.y = y;
+         }
+         public String toString() {
+           return super.x + ":" + this.y;
+         }
+       }
+       
+       And given the code fragment:
+       Vehicle y = new Car();
+       System.out.println(y);
+       
+       What is the result?
+      A. 10:20
+      B. 0:20
+      C. Compilation fails at line N1
+      D. Compilation fails at line N2
+      
+ Q54:  Given:
+       MyString.java
+       package pl;
+       class MyString{
+         String msg;
+         MyString(String msg) {
+           this.msg = msg;
+         }
+       }
+       
+       Test.java
+       package pl;
+       public class Test {
+         public static void main(String[] args) {
+           System.out.println("hello " + new StringBuilder("java se 8"));
+           System.out.println("hello " + new MyString("java se 8"));
+         }
+       }
+       What is the result?
+      A. hello java se 8
+         hello java se 8
+      B. hello java.lang stringbuilder@<hashcode>
+         hello p1.mystring@<hashcode2>
+      C. hello java se 8
+         hello p1.mystring@<hashcode2>
+      D. Compilation fails at the test class
+      
+ Q55:  Given:
+       3:  public static void main(String[] args) {
+       4:    int ivar = 100;
+       5:    float fvar = 100.100f;
+       6:    double dvar = 123;
+       7:    ivar = fvar;
+       8:    fvar = ivar;
+       9:    dvar = fvar;
+       10:   fvar = dvar;
+       11:   dvar = ivar;
+       12:   ivar = dvar; }
+       
+       Which three lines fail to compile?
+      A. Line 7
+      B. Line 8
+      C. Line 9
+      D. Line 10
+      E. Line 11
+      F. Line 12
+      
+ Q56:  Given:
+       public static void main(int[] args) {
+         System.out.println("int main " + args[0]);
+       }
+       public static void main(Object[] args) {
+         System.out.println("Object main " + args[0]);
+       }
+       public static void main(String[] args) {
+         System.out.println("String main " + args[0]);
+       }
+       and commands:
+       javac.MainTest.java
+       java MainTest 1 2 3
+       
+       What is the result?
+      A. line7
+      B. int main 1
+      C. Object main 1
+      D. String main 1
+      E. Compilation error
+      F. An exception is thrown at runtime
+      
+ Q57:  Given:
+       int num[][] new int[1][3];
+       for (int i = 0; i < num.length; i++) {
+         for (int j = 0; j < num[i].length; j++) {
+           num[i][j] = 10;
+         }
+       }
+       
+       Which option represents the state of the num array after successful
+       completion of the outer loop?
+      A. num[0][0] = 10
+         num[0][1] = 10
+         num[0][2] = 10
+      B. num[0][0] = 10
+         num[1][0] = 10
+         num[2][0] = 10
+      C. num[0][0] = 10
+         num[0][1] = 0
+         num[0][2] = 0
+      D. num[0][0] = 10
+         num[0][1] = 10
+         num[0][2] = 10
+         num[0][3] = 10
+         num[1][0] = 0
+         num[1][1] = 0
+         num[1][2] = 0
+         num[1][3] = 0
+         
+ Q58:  Given:
+       package pages;
+       public class Person {
+         String name;
+         int age = 25;
+         public Person(String name) {
+           this();  //  LINE N1
+           setName(name);
+         }
+         public Person(String name, int age) {
+           Person(name);  // LINE N2
+           setAge(age);
+         }
+         public String getName() {
+           return name;
+         }
+         public void setName(String name) {
+           this.name = name;
+         }
+         public int getAge() {
+           return age;
+         }
+         public void setAge(int age) {
+           this.age = age;
+         }
+         public String show() {
+           return name + " " + age;
+         }
+         public static void main(String[] args) {
+           Person p1 = new Person("JESSE");
+           Person p2 = new Person("Walter", 53);
+           System.out.println(p1.show());
+           System.out.println(p2.show());
+         }
+       }
+       What is the result?
+      A. Jesse 25
+         Walter 52
+      B. Compilation fails at line N1
+      C. Compilation fails at line N2
+      D. Compilation fails at both line N1 and line N2
+      
+ Q59:  Given:
+       public class Planet {
+         public String name;
+         public int moons;
+         public Plane(String name, int moons) {
+           this.name = name;
+           this.moons = moons;
+         }
+       }
+       And the following main method:
+       public static void main(String[] args) {
+         Planet[] planets = {
+           new Planet("Mercury", 0),
+           new Planet("Venus", 0),
+           new Planet("Earth", 1),
+           new Planet("Mars", 2)};
+         System.out.println(planets);
+         System.out.println(plantes[2]);
+         System.out.println(planets[2].moons);
+       }
+       What is the output?
+      A. planets
+         Earth
+         1
+      B. [LPlanets.Planet;@15db9742
+         Earth
+         1
+      C. [LPlanets.Planet;@15db9742
+         Planets.Planet@6d06d69c
+         1
+      D. [LPlanets.Planet;@15db9742
+         Planets.Planet@6d06d69c
+         [Planets.Moon;@7852e922
+      E. [LPlanets.Planet;@15db9742
+         Venus
+         0
+         
+ Q60:  You are asked to develop a program for a shopping application, and you are given 
+       the following information:
+        * The application must contain the classes Toy, EduToy, and ConsToy.
+          The Toy class is the superclass of the other two classes
+        * The int calculatePrice(Toy t) method calculates the price of a toy
+        * The void printToy(Toy t) method prints the details of a toy
+       
+       Which definition of the Toy class adds a valid layer of abstraction to the class hierarchy?
+      A. public abstract class Toy {
+           public abstract int calculatePrice(Toy t);
+           public void printToy(Toy t) {
+             /* code goes here */
+           }
+         }
+      B. public abstract class Toy {
+           public int calculatePrice(Toy t);
+           public void printToy(Toy t);
+         }
+      C. public abstract class Toy {
+           public int calculatePrice(Toy t);
+           public final void printToy(Toy t) {
+             /* code goes here */
+           }
+         }
+      D. public abstract class Toy {
+           public abstract int calculatePrice(Toy t) {
+             /* code goes here */
+           }
+           public abstract void printToy(Toy t) {
+             /* code goes here */
+           }
+         }
+         
+ Q61:  Given:
+       int[] intArr = {15, 30, 45, 60, 75};
+       intArr[2] = intArr[4];
+       intArr[4] = 90;
+       What are the values of each element in intArr after this code has executed?
+      A. 15, 60, 45, 90, 75
+      B. 15, 90, 45, 90, 75
+      C. 15, 30, 75, 60, 90
+      D. 15, 30, 90, 60, 90
+      E. 15, 4, 45, 60, 90
+      
+ Q62:  Given:
+       int[] intArr = {8, 16, 32, 64, 128};
+       Which two code fragments, independently, print each element in this array?
+      A. for (int i : intArr) {
+           System.out.println(intArr);
+         }
+      B. for (int i : intArr) {
+           System.out.println(i + " ");
+         }
+      C. for (int i = 0 : intArr) {
+           System.out.println(intArr[i] + " ");
+           i++;
+         }
+      D. for (int i = 0; i < intArr.length; i++) {
+           System.out.println(i + " ");
+         }
+      E. for (int i = 0; i < intArr.length; i++) {
+           System.out.println(intArr[i] + " ");
+         }
+      F. for (int i; i < intArr.length; i++) {
+           System.out.println(intArr[i] + " ");
+         }
+         
+ Q63:  Given:
+       A.java
+       public class A {
+         public void a() {}
+         int a;
+       }
+       
+       B.java
+       public class B {
+         private int doStuff() {
+           private int x = 100;
+           return x++;
+         }
+       }
+       
+       C.java
+       import java.io.*;
+       package p1;
+       class A {
+         public void main(String fileName) throws IOException{}
+       }
+       
+       Which statement is true?
+      A. Only the A.java file compiles successfully
+      B. Only the B.java file compiles successfully
+      C. Only the C.java file compiles successfully
+      D. Only the A.java and B.java files compile successfully
+      E. Only the B.java and C.java files compile successfully
+      F. Only the A.java and C.java files compile successfully
+      
+ Q64:  Given:
+       int[] array = {1, 2, 3, 4, 5};
+       And given the requirements:
+       1. Process all the elements of the array in the order of entry
+       2. Process all the elements of the array in the reverse order of entry
+       3. Process alternating elements of the array in the order of entry
+       Which two statements are true?
+      A. Requirements 1, 2, and 3 can be implemented by using the enhanced for loop
+      B. Requirements 1, 2, and 3 can be implemented by using the standard for loop
+      C. Requirements 2 and 3 CANNOT be implemented by using the standard for loop
+      D. Requirement 1 can be implemented by using the enhanced for loop
+      E. Reuirement 3 CANNOT be implemented by using either the enhanced for loop or the standard for loop
+      
+ Q65:  Given:
+       public class TestScope {
+         public static void main(String[] args) {
+           int var1 = 200;
+           System.out.println(doCalc(var1));
+           System.out.println(" " + var1);
+         }
+         static int doCalc(int var1) {
+           var1 = var1 * 2;
+           return var1;
+         }
+       }
+       What is the result?
+      A. 400  200
+      B. 200  200
+      C. 400  400
+      D. Compilation fails
+      
+ Q66:  Given the following class declaration:
+       * public abstract class Animal
+       * public interface Hunter
+       * public class Cat extends Animal implements Hunter
+       * public class Tiger extends Cat
+       Which answer fails to compile?
+      A. ArrayList<Animal> myList = new ArrayList<>();
+         myList.add(new Tiger());
+      B. ArrayList<Hunter> myList = new ArrayList<>();
+         myList.add(new Cat());
+      C. ArrayList<Hunter> myList = new ArrayList<>();
+         myList.add(new Tiger());
+      D. ArrayList<Tiger> myList = new ArrayList<>();
+         myList.add(new Cat());
+      E. ArrayList<Animal> myList = new ArrayList<>();
+         myList.add(new Cat());
+         
+ Q67:  Which statemet is true about Java byte code?
+      A. It can run on any platform
+      B. It can run on any platform only if it was compiled for that platform
+      C. It can run on any platform that has the Java Runtime Environment
+      D. It can run on any platform that has a java compiler
+      E. It can run on any platform only if that platform has both the Java Runtime
+         Environment and java compiler
+         
+ Q68:  Given:
+       public class MarkList {
+         int num;
+         public static void graceMarks(MarkList obj4) {
+           obj4.num += 10;
+         }
+         public static void main(String[] args) {
+           MarkList obj1 = new MarkList();
+           MarkList obj2 = obj1;
+           MarkList obj3 = null;
+           obj2.num = 60;
+           graceMarks(obj2);
+         }
+       }
+       How many MarkList instances are created in memory at runtime?
+      A. 1
+      B. 2
+      C. 3
+      D. 4
+      
+ Q69:  Given:
+       public class Triangle {
+         static double area;
+         int b = 2, h = 3;
+         public static void main(String[] args) {
+           double p, b, h;  // LINE N1
+           if (area == 0) {
+             b = 3;
+             h = 4;
+             p = 0.5;
+           }
+           area = p * b * h;  // LINE N2
+           System.out.println("Area is " + area);
+         }
+       }
+       What is the result?
+      A. Area is 6.0
+      B. Area is 3.0
+      C. Compilation fails at line N1
+      D. Compilation fails at line N2
+      
+ Q70:  Given the code fragment:
+       public class Test {
+         public static void main(String[] args) {
+           // LINE N1
+           switch(x) {
+             case 1:
+               System.out.println("One");
+               break;
+             case 2:
+               System.out.println("Two");
+               break;
+           }
+         }
+       }
+       Which three code fragments can be independently inserted at line N1 to enable the 
+       code to print One?
+      A. Byte x = 1;
+      B. short x = 1;
+      C. String x = "1";
+      D. Long x = 2;
+      E. Double x = 1;
+      F. Integer x = new Integer("1");
+      
+ Q71:  Given:
+       public class App {
+         public static void main(String[] args) {
+           Boolean[] bool = new Boolean[2];
+           bool[0] = new Boolean(Boolean.parseBoolean("true"));
+           bool[1] = new Boolean(null);
+           System.out.println(bool[0] + " " + bool[1]);
+         }
+       }
+       What is the result?
+      A. true false
+      B. true null
+      C. Compilation fails
+      D. A NullPointerException is thrown at runtime
+      
+ Q72:  Given the following code for the classes MyException and Test:
+       public class MyException extends RuntimeException {}
+       public class Test {
+         public static void main(String[] args) {
+           try {
+             method1();
+           } catch (MyException ne) {
+             System.out.print("A");
+           }
+         }
+         public static void method1() {
+           try {
+             throw Math.random() > 0.5 ? new MyException() : new RuntimeException();
+           } catch (RuntimeException re) {
+             System.out.print("B");
+           }
+         }
+       }
+       What is the result?
+      A. A
+      B. B
+      C. Either A or B
+      D. A B
+      E. A compile time error occurs at line N1
+      
+ Q73:  Given:
+       public class Product {       
+         String myStr = "7007";
+         public void doStuff(String str) {
+           int myNum = 0;
+           try {
+             String myStr = str;
+             myNum = Integer.parseInt(myStr);
+           } catch (NumberFormatException ne) {
+             System.err.println("Error");
+           }
+           System.err.println("myStr: " + myStr + ", myNum: " + myNum);
+         }
+         public static void main(String[] args) {
+           App obj = new App();
+           obj.doStuff("9009");
+         }
+       }
+       What is the result?
+      A. myStr: 9009, myNum: 9009
+      B. myStr: 7007, myNum: 7007
+      C. myStr: 7007, myNum: 9009
+      D. Compilation fails
+      
+ Q74:  Which two are benefits of polymorphism?
+      A. Faster code at runtime
+      B. More efficient code at runtime
+      C. More dynamic code at runtime
+      D. More flexible and reusable code
+      E. Code that is protected from extension by other classes
+      
+ Q75:  Given the code fragment:
+       int nums1[] = new int[3];
+       int nums2[] = {1, 2, 3, 4, 5};
+       nums1 = nums2;
+       for (int x : nums1) {
+         System.out.print(x + ":");
+       }
+       What is the result?
+      A. 1:2:3:4:5:
+      B. 1:2:3:
+      C. Compilation fails
+      D. An ArrayOutOfBoundsException is thrown at runtime
+      
+ Q76:  Given:
+       public class Product {
+         int id;
+         String name;
+         public Product(int id, String name) {
+           this.id = id;
+           this.name = name;
+         }
+       }
+       
+       And given the code fragment:
+       4: Product p1 = new Product(101, "Pen");
+       5: Product p2 = new Product(101, "Pen");
+       6: Product p3 = p1;
+       7: boolean ans1 = p1 == p2;
+       8: boolean ans2 = p1.name.equals(p2.name);
+       9: System.out.print(ans1 + ":" + ans2);
+       
+       What is the result?
+      A. true:true
+      B. true:false
+      C. false:true
+      D. false:false
+      
+ Q77:  Given the following classes:
+       public class Employee {
+         public int salary;
+       }
+       public class Manager extends Employee {
+         public int budget;
+       }
+       public class Director extends Manager {
+         public int stockOptions;
+       }
+       
+       And given the following main method:
+       public static void main(String[] args) {
+         Employee employee = new Employee();
+         Manager manager = new Manager();
+         Director director = new Director();
+         // LINE N1
+       }
+       
+       Which two options fail to compile when placed at line N1 of the main method?
+      A. employee.salary = 50_000;
+      B. director.salary = 80_000;
+      C. employee.budget = 200_000;
+      D. manager.budget = 1_000_000;
+      E. manager.stockOptions = 500;
+      F. director.stockOptions = 1_000;
+      
+ Q78:  Which one of the following code excamples uses valid Java syntax?
+      A. public class Boat {
+           public static void main(String[] args) {
+             System.out.println("I float.");
+           }
+         }
+      B. public class Cake {
+           public static void main(String[] ) {
+             System.out.println("Chocolate");
+           }
+         }
+      C. public class Dog {
+           public void main(String[] args) {
+             System.out.println("Squirrel.");
+           }
+         }
+      D. public class Bank {
+           public static void main(String() args) {
+             System.out.println("Earn interest");
+           }
+         }
+         
+ Q79:  Given the code fragment:
+       int n[][] = {{1, 3}, {2, 4}};
+       for (int i = n.length-1; i >= 0; i--) {
+         for (int y : n[i]) {
+           System.out.print(y);
+         }
+       }
+       What is the result?
+      A. 1324
+      B. 2413
+      C. 3142
+      D. 4231
+      
+ Q80:  Given:
+       class Caller {
+         private void init() {
+           System.out.println("Initialized");
+         }
+         private void start() {
+           init();
+           System.out.println("Started");
+         }
+       }
+       public class TestCall {
+         public static void main(String[] args) {
+           Caller c = new Caller();
+           c.start();
+           c.init();
+         }
+       }
+       What is the result?
+      A. An exception is thrown at runtime
+      B. Initialized
+         Started
+         Initialized
+      C. Initialized
+         Started
+      D. Compilation fails
+      
+ Q81:  Given the code fragment:
+       public static void main(String[] args) {
+         try {
+           int num = 10;
+           int div = 0;
+           int ans = num / div;
+         } catch (ArithmeticException ae) {
+           ans = 0; // LINE N1
+         } catch (Exception e) {
+           System.out.println("Invalid calculation");
+         }
+         System.out.println("Answer = " + ans); // LINE N2
+       }
+       What is the result?
+      A. Answer = 0
+      B. Invalid calculation
+      C. Compilation fails only at line N1
+      D. Compilation fails only at line N2
+      E. Compilation fails both at line N1 and N2
+      
+ Q82:  Given:
+       public class MyField {
+         int x;
+         int y;
+         public void doStuff(int x, int y) {
+           this.x = x;
+           y = this.y;
+         }
+         public void display() {
+           System.out.println(x + " " + y + " : ");
+         }
+         public static void main(String[] args) {
+           MyField m1 = new MyField();
+           m1.x = 100;
+           m1.y = 200;
+           MyField m2 = new MyField();
+           m2.doStuff(m1.x, m1.y);
+           m1.display();
+           m2.display();
+         }
+       }
+       What is the result?
+      A. 100 0 : 100 200 :
+      B. 100 0 : 100 0 :
+      C. 100 200 : 100 200 :
+      D. 100 200 : 100 0 :
+      
+ Q83:  Given:
+       public class Vowel {
+         private char var;
+         public static void main(String[] args) {
+           char var1 = 'a';
+           char var2 = var1;
+           var2 = 'e';
+           Vowel obj1 = new Vowel();
+           Vowel obj2 = obj1;
+           obj1.var = 'i';
+           obj2.var = 'o';
+           System.out.println(var1 + ", " + var2);
+           System.out.println(obj1.var + ", " + obj2.var);
+         }
+       }
+       What is the result?
+      A. e, e
+         i, o
+      B. a, e
+         i, o
+      C. a, e
+         o, o
+      D. e, e
+         o, o
+         
+ Q84:  Given the code fragment:
+       if (aVar++ < 10) {
+         System.out.println(aVar + " Hello World!");
+       } else {
+         System.out.println(aVar + " Hello Universe!");
+       }
+       What is the result if the integer aVar is 9?
+      A. Compilation fails
+      B. 10 Hello Universe!
+      C. 10 Hello World!
+      D. 9 Hello World!
+      
+ Q85:  Given:
+       public class MyClass {
+         public static void main(String[] args) {
+           String s = "Java Duke";
+           int len = s.trim().length();
+           System.out.println(len);
+         }
+       }
+       What is the result?
+      A. Compilation fails
+      B. 11
+      C. 8
+      D. 9
+      E. 10
+      
+ Q86:  Given:
+       public class Test {
+         public static void main(String[] args) {
+           boolean a = new Boolean(Boolean.valueOf(args[0]));
+           boolean b = new Boolean(args[1]);
+           System.out.println(a + " " + b);
+         }
+       }
+       and given the commands:
+       javac Test.java
+       java Test TRUE null
+       
+       What is the result?
+      A. TRUE null
+      B. true false
+      C. false false
+      D. true true
+      E. A ClassCastException is thrown at runtime
+      
+ Q87:  Given:
+       A.java
+       package p1;
+       public class A {
+       }
+       
+       B.java
+       package p1.p2;
+       // LINE N1
+       public class B {
+         public void doStuff() {
+           A b = new A();
+         }
+       }
+       
+       C.java
+       package p3;
+       // LINE N2
+       public class C {
+         public static void main(String[] args) {
+           A o1 = new A();
+           B o2 = new B();
+         }
+       }
+       
+       Which modification enables the code to compile?
+      A. Replace line N1 with:
+         import p1.A;
+         Replace line N2 with:
+         import p1.A;
+         import p1.p2.B;
+      B. Replace line N1 with:
+         import p1;
+         Replace line N2 with:
+         import p1;
+         import p1.p2;
+      C. Replace line N1 with:
+         import p1.A;
+         Replace line N2 with:
+         import p1.*;
+      D. Replace line N1 with:
+         import p1.*;
+         Replace line N2 with: 
+         import p1.p2.*;
+         
+ Q88:  Which statement will empty the contents of a StringBuilder variable named sb?
+      A. sb.deleteAll();
+      B. sb.delete(0, sb.size());
+      C. sb.delete(0, sb.length());
+      D. sb.removeAll();
+      
+ Q89:  Given:
+       String stuff = "TV";
+       String res = null;
+       if (stuff.equals("TV")) {
+         res = "Walter";
+       } else if (stuff.equals("Movie")) {
+         res = "White";
+       } else {
+         res = "No Result";
+       }
+       Which code fragment can replace the if block?
+      A. stuff.equals("TV")?res="Walter":stuff.equals("Movie")?res="White":res="No Result";
+      B. res=stuff.equals("TV")?"Walter"else stuff.equals("Movie")?"White":"No Result";
+      C. res=stuff.equals("TV")?stuff.equals("Movie")?"Walter":"White":"No Result";
+      D. ret=stuff.equals("TV")?"Walter":stuff.equals("Movie")?"White":"No Result";
+      
+ Q90:  Given:
+       class Patient {
+         String name;
+         public Patient(String name) {
+           this.name = name;
+         }
+       }
+       and the code fragment:
+       public class Test {
+         public static void main(String[] args) {
+           List ps = new ArrayList();
+           Patient p2 = new Patient("Mike");
+           ps.add(p2);
+           // LINE N1
+           if (f >= 0) {
+             System.out.print("Mike found");
+           }
+         }
+       }
+       Which code fragment, when inserted at line N1, enables the code to print Mike found?
+      A. int f = ps.indexOf(p2);
+      B. int f = ps.indexOf(Patient("Mike"));
+      C. int f = ps.indexOf(new Patient "Mike");
+      D. Patient p = new Patient("Mike");
+         int f = ps.indexOf(p);
+         
+ Q91:  Which statement is true about the switch statement?
+      A. It must contain defaul section
+      B. The break statement, at the end of each case block, is mandatory
+      C. Its case label literals can be changed at runtime
+      D. Its expression must evaluate to a single value
+      
+ Q92:  Given:
+       class Animal {
+         String type = "Canine";
+         int maxSpeed = 60;
+         Animal() {}
+         Animal(String type, int maxSpeed) {
+           this.type = type;
+           this.maxSpeed = maxSpeed;
+         }
+       }
+       class WildAnimal extends Animal {
+         String bounds;
+         WildAnimal(String bounds) {
+           // LINE N1
+         }
+         WildAnimal(String type, int maxSpeed, String bounds) {
+           // LINE N2
+         }
+       }
+       And given the code fragment:
+       7:  WildAnimal wolf = new WildAnimal("Long");
+       8:  WildAnimal tiger = new WildAnimal("Feline", 80, "Short");
+       9:  System.out.println(wolf.type + " " + wolf.maxSpeed + " " + wolf.bounds);
+       10: System.out.println(tiger.type + " " + tiger.maxSpeed + " " + tiger.bounds);
+       
+       Which two modifications enable the code to print the following output?
+       Canine 60 Long
+       Feline 80 Short
+      A. Replace line N1 with:
+         super();
+         this.bounds = bounds;
+      B. Replace line N1 with:
+         this.bounds = bounds;
+         super();
+      C. Replace line N2 with:
+         super(type, maxSpeed);
+         this(bounds);
+      D. Replace line N1 with:
+         this("Canine", 60);
+         this.bounds = bounds;
+      E. Replace line N2 with:
+         super(type, maxSpeed);
+         this.bounds = bounds;
+         
+ Q93:  Given the code fragment:
+       public static void main(String[] args) {
+         String names[] = {"Thomas", "Peter", "Joseph"};
+         String pws[] = new String[3];
+         int idx = 0;
+         try {
+           for (String n : names) {
+             pws[idx] = n.substring(2, 6);
+             idx++;
+           }
+         } catch (Exception e) {
+           System.out.println("Invalid Name");
+         }
+         for (String p : pws) {
+           System.out.println(p);
+         }
+       }
+       What is the result?
+      A. Invalid Name
+      B. Invalid Name
+         omas
+      C. Invalid Name
+         omas
+         null
+         null
+      D. omas
+         ter
+         seph
+         
+ Q94:  Given the code fragment:
+       class Employee {
+         private String name;
+         private int age;
+         private int salary;
+         public Employee(String name, int age) {
+           setName(name);
+           setAge(age);
+           setSalary(2000);
+         }
+         public Employee(String name, int age, int salary) {
+           setSalary(2000);
+           this(name, age);
+         }
+         // GETTER AND SETTER METHODS FOR ATTRIBUTES GO HERE
+         public void printDetails() {
+           System.out.println(name + " : " + age + " : " + salary);
+         }
+         
+         Test.java
+         class Test {
+           public static void main(String[] args) {
+             Employee e1 = new Employee();
+             Employee e2 = new Employee("Jack", 50);
+             Employee e3 = new Employee("Chloe", 40, 5000);
+             e1.printDetails();
+             e2.printDetails();
+             e3.printDetails();
+           }
+         }
+         What is the result?
+        A. Compilation fails in the Employee class
+        B. null : 0 : 0
+           Jack : 50 : 0
+           Chloe : 40 : 5000
+        C. null : 0 : 0
+           Jack : 50 : 2000
+           Chloe : 40 : 5000
+        D. Compilation fails in the Test class
+        E. Both the Employee class and the Test classes fail to compile
+        
+ Q95:  Given the code fragments:
+       A.java
+       package p1;
+       public class A {
+       }
+       
+       B.java
+       package p1.p2;
+       // LINE N1
+       public class B {
+         public void doStuff() {
+           A b = new A();
+         }
+       }
+       
+       C.java
+       package p3;
+       // LINE N2
+       public class C {
+         public static void main(String[] args) {
+           A o1 = new A();
+           B o2 = new B();
+         }
+       }
+       Which modifications enable the code to compile?
+      A. Replace line N1 with:
+         import p1.*;
+         Replace line N2 with:
+         import p1.p2.*;
+      B. Replace line N1 with:
+         import p1.A;
+         Replace line N2 with:
+         import p1.*;
+      C. Replace line N1 with:
+         import p1.A;
+         Replace line N2 with: 
+         import p1.A;
+         import p1.p2.B;
+      D. Replace line N1 with:
+         import p1;
+         Replace line N2 with:
+         import p1;
+         import p1.p2;
+         
+ Q96:  Given:
+       class A {
+         public void test() {
+           System.out.println("A");
+         }
+       }
+       class B extends A {
+         public void test() {
+           System.out.println("B");
+         }
+       }
+       class C extends A {
+         public void test() {
+           System.out.println("C");
+         }
+       }
+       and given the following main method:
+       public static void main(String[] args) {
+         A b1 = new A();
+         A b2 = new C();
+         b1 = (A) b2;
+         A b3 = (B) b2; // LINE N1
+         A b4 = (B) b2; // LINE N2
+         b1.test();
+         b3.test();
+       }
+       What is the result?
+      A. A  B
+      B. A  C
+      C. C  C
+      D. A ClassCastException is thrown only at line N1
+      E. A ClassCastException is thrown only at line N2
+      
+ Q97:  Given:
+       public class SumTest {
+         public static void doSum(Integer x, Integer y) {
+           System.out.println("Integer sum is " + (x + y));
+         }
+         public static void doSum(double x, double y) {
+           System.out.println("double sum is " + (x + y));
+         }
+         public static void doSum(float x, float y) {
+           System.out.println("float sum is " + (x + y));
+         }
+         public static void doSum(int x, int y) {
+           System.out.println("int sum is " + (x + y));
+         }
+         public static void main(String[] args) {
+           doSum(10, 20);
+           doSum(10.0, 20.0);
+         }
+       }
+       What is the result?
+      A. int sum is 30
+         float sum is 30.0
+      B. int sum is 30
+         double sum is 30.0
+      C. Integer sum is 30
+         double sum is 30.0
+      D. Integer sum is 30
+         float sum is 30.0
+         
+ Q98:  Given the code fragment:
+       4:  class X {
+       5:    public void printfileContent() {
+       6:      /* code goes here */
+       7:      throw new IOException();
+       8:    }
+       9:  }
+       10: public class Test {
+       11:   public static void main(String[] args) {
+       12:     X xobj = new X();
+       13:     xobj.printfileContent();
+       14:   }
+       15: }
+       Which two modifications should you make so that the code compiles successfully?
+      A. At line 14, insert throw new IOException();
+      B. Replace line 5 with public void printfileContent() throws IOException{
+      C. Replace line 11 with public static void main(String[] args) throws Exception {
+      D. Replace line 13 with:
+         try {
+           xobj.printfileContent();
+         } catch (Exception e) {}
+           catch (IOException e) {}
+      E. Replace line 7 with throw IOException("Exception raised")
+      
+ Q99:  You are asked to create a method that accepts an array of integers and returns the highest value
+       from that array.
+       Given the code fragment:
+       class Test {
+         public static void main(String[] args) {
+           int numbers[] = {12, 13, 42, 32, 15, 156, 23, 51, 12};
+           int max = findMax(numbers);
+         }
+         /* LINE N1 */{
+           int max = 0;
+           /* code goes here */
+           return max;
+         }
+       }
+       Which method signature do you use at line N1?
+      A. public int findMax(int[] numbers)
+      B. static int[] findMax(int max)
+      C. static int findMax(int[] numbers)
+      D. final int findMax(int[])
+      
+ Q100: Which three statements are true about the structure of a Java class?
+      A. A public class must have a main method
+      B. A class can have only one private constructor
+      C. A method can have the same name as a field
+      D. A class can have overloaded static methods
+      E. The methods are mandatory components of a class
+      F. The fields need not be initialized before use
+      
+ Q101: Given the code fragment:
+       public static void main(String[] args) {
+         System.out.println("Result A " + 0 + 1);
+         System.out.println("Result B " + (1) + (2));
+       }
+       What is the result?
+      A. Result A 1
+         Result B 3
+      B. Result A 01
+         Result B 3
+      C. Result A 01
+         Result B 12
+      D. Result A 1
+         Result B 12
+         
+ Q102: Given:
+       public class App {
+         int count;
+         public static void displayMsg() {
+           count++;
+           // LINE N1
+           System.out.println("Welcome " + "Visit Count: " + count); // LINE N2
+         }
+         public static void main(String[] args) {
+           App.displayMsg();  // LINE N3
+           App.displayMsgs();  // LINE N4
+         }
+       }
+       What is the result?
+      A. Compilation fails at line N3 and line N4
+      B. Compilation fails at line N1 and line N2
+      C. Welcome Visit Count: 1
+         Welcome Visit Count: 2
+      D. Welcome Visit Count: 1
+         Welcome Visit Count: 2
+         
+ Q103: Given:
+       public class Person {
+         String name;
+         int age = 25;
+         public Person(String name) {
+           this(); // LINE N1
+           setName();
+         }
+         public Person(String name, int age) {
+           Person(name); // LINE N2
+           setAge(age);
+         }
+         // SETTER AND GETTER METHODS GO HERE
+         public String show() {
+           return name + " " + age;
+         }
+         public static void main(String[] args) {
+           Person p1 = new Person("Jesse");
+           Person p2 = new Person("Walter", 52);
+           System.out.println(p1.show());
+           System.out.println(p2.show());
+         }
+       }
+       What is the result?
+      A. Compilation fails at both line N1 and line N2
+      B. Compilation fails only at line N2
+      C. Compilation fails only at line N1
+      D. Jesse 25
+         Walter 52
+         
+ Q104: Given: 
+       public class Test {
+         static int count = 0;
+         int i = 0;
+         public void changeCount() {
+           while(i < 5) {
+             i++;
+             count++;
+           }
+         }
+         public static void main(String[] args) {
+           Product check1 = new Product();
+           Product check2 = new Product();
+           check1.changeCount();
+           check2.changeCount();
+           System.out.println(check1.count + ":" + check2.count);
+         }
+       }
+      A. 5:5
+      B. 10:10
+      C. 5:10
+      D. Compilation fails
+      
+ Q105: Given:
+       public static void main(String[] args) {
+         ArrayList<Integer> points = new ArrayList<>();
+         points.add(1);
+         points.add(2);
+         points.add(3);
+         points.add(4);
+         points.add(null);
+         points.remove(2);
+         points.remove(null);
+         System.out.print(points);
+       }
+       What is the result?
+      A. A NullPointerException is thrown at runtime
+      B. [1,2,4]
+      C. [1,2,4,null]
+      D. [1,3,4]
+      E. [1,3,null]
+      F. Compilation fails
+      
+ Q106: Given:
+       class Test {
+         public static void main(String[] args) {
+           int numbers[];
+           numbers[0] = 10;
+           numbers[1] = 20;
+           numbers = new int[4];
+           numbers[2] = 30;
+           numbers[3] = 40;
+           for (int x : numbers) {
+             System.out.print(" " + x);
+           }
+         }
+         What is the result?
+        A. 10 20 30 40 
+        B. 0 0 30 40 
+        C. Compilation fails
+        D. An exception is thrown at runtime
+        
+ Q107: Which of the following will fail to compile?
+      A. float flt = 100f;
+      B. float flt = (float)1_11.00;
+      C. float flt = 100;
+      D. double yl = 203.22;
+         float flt = y1;
+      E. int y2 = 100;
+         float flt = (float)y2;
+         
+ Q108: Given:
+       public class Fieldinit {
+         char c;
+         boolean b;
+         float f;
+         void printAll() {
+           System.out.println("c = " + c);
+           System.out.println("b = " + b);
+           System.out.println("f = " + f);
+         }
+         public static void main(String[] args) {
+           Fieldinit f = new Fieldinit();
+           f.printAll();
+         }
+       }
+       What is the output?
+      A. c = 
+         b = false
+         f = 0.0
+      B. c = null
+         b = true
+         f = 0.0
+      C. c = 0
+         b = false
+         f = 0.0f
+      D. c = null
+         b = false
+         f = 0.0f
+         
+ Q109: Which two statements are true about exception handling?
+      A. Only unchecked exceptions can be rethrown
+      B. All subclasses of the RuntimeException class are recoverable
+      C. The parameter in a catch block is of Throwable type
+      D. All parameter subclasses of the RuntimeException class must be caught or declared to be thrown
+      E. All subclasses of the Exception class except the RuntimeException class are checked exceptions
+      F. All subclasses of the Error class are checked exceptions and are recoverable
+      
+ Q110: Given the code fragment:
+       public static void main(String[] args) {
+         int[] stack = {10, 20, 30};
+         int size = 3;
+         int idx = 0;
+         /* LINE N1 */
+         System.out.println("The Top element: " + stack[idx]);
+       }
+       Which code fragment, inserted at line N1, prints The Top element: 30?
+      A. do {
+           idx++;
+         } while (idx >= size);
+      B. while (idx < size) {
+           idx++;
+         }
+      C. do {
+           idx++;
+         } while (idx < size - 1);
+      D. do {
+           idx++;
+         } while (idx <= size);
+      E. while (idx <= size - 1) {
+           idx++;
+         }
+         
+ Q111: Given the code fragment:
+       public static void main(String[] args) {
+         String myStr = "Hello World";
+         myStr.trim();
+         int i1 = myStr.indexOf(" ");
+         System.out.println(i1);
+       }
+       What is the result?
+      A. An exception is thrown at runtime
+      B. -1
+      C. 5
+      D. 0
+      
+ Q112: Given:
+       class Equal {
+         public static void main(String[] args) {
+           String str1 = "Java";
+           String[] str2 = {"J", "a", "v", "a"};
+           String str3 = "";
+           for (String str : str2) {
+             str3 = str3 + str;
+           }
+           boolean b1 = (str1 == str3);
+           boolean b2 = (str1.equals(str3));
+           System.out.println(b1 + ", " + b2);
+         }
+       }
+       What is the result?
+      A. false, false
+      B. false, true
+      C. true, false
+      D. true, true
+      
+ Q113: What two statements are true?
+      A. Error class is unextandable
+      B. Error class is extendable
+      C. Error is a RuntimeException
+      D. Error is an Exception
+      E. Error is a Throwable
+      
+ Q114: Given the code fragment:
+       public static void main(String[] args) {
+         int data[] = {2010, 2013, 2014, 2015, 2014};
+         int key = 2014;
+         int count = 0;
+         for (int e : data) {
+           if (e != key) {
+             continue;
+             count++;
+           }
+         }
+         System.out.print(count + " Found");
+       }
+       What is the result?
+      A. Compilation fails
+      B. 0 Found
+      C. 1 Found
+      D. 3 Found
+      
+ Q115: Given the following code fragment:
+       LocalDateTime dt = LocalDateTime.of(2014, 7, 31, 1, 1);
+       dt.plusDays(30);
+       dt.plusMonths(1);
+       System.out.print(dt.format(DatetimeFormatter.ISO_DATE));
+       What is the result?
+      A. An exception is thrown at runtime
+      B. 07-31-2017
+      C. 2014-07-31
+      D. 2014-09-30
+      
+ Q116: Given:
+       public class Test {
+         public static final int MIN = 1;
+         public static void main(String[] args) {
+           int x = args.length;
+           if (checkLimit(x)) { // LINE N1
+             System.out.println("Java SE");
+           } else {
+             System.out.println("Java EE");
+           }
+         }
+         public static boolean checkLimit(int x) {
+           return (x >= MIN) ? true : false;
+         }
+       }
+       And given the commands:
+       javac Test.java
+       java Test
+       
+       What is the result?
+      A. Java SE
+      B. Java EE
+      C. Compilation fails at line N1
+      D. A NullPointerException is thrown at runtime
+      
+ Q117: Given:
+       interface Readable {
+         public void readBook();
+         public void setBookMark();
+       }
+       abstract class Book implements Readable { // LINE N1
+         public void readBook();
+         // LINE N2
+       }
+       class EBook extends Book { // LINE N3
+         public void readBook() {
+           // LINE N4
+         }
+       }
+       And given the code fragment:
+       EBook book1 = new EBook();
+       book1.readBook();
+       
+       Which option enables the code to compile?
+      A. Replace the code fragment at line N3 with:
+         abstract class EBook extends Book {
+      B. Replace the code fragment at line N1 with:
+         class Book implements Readable {
+      C. At line N2 insert:
+         public abstract void setBookMark();
+      D. At line N4 insert:
+         public void setBookMark() {}
+         
+ Q118: Given the following class:
+       public class CheckingAccount {
+         public int amount;
+         // LINE N1
+       }
+       And given the following main method, located in another class:
+       public static void main(String[] args) {
+         CheckingAccount acct = new CheckingAccount();
+         // LINE N2
+       }
+       
+       Which 3 pieces of code, when inserted independently, set the value of amount to 100?
+      A. At line N2 insert:
+         amount = 100;
+      B. At line N2 insert:
+         this.amount = 100;
+      C. At line N2 insert:
+         acct.amount = 100;
+      D. At line N1 insert:
+         public CheckingAccount() {
+           amount = 100;
+         }
+      E. At line N1 insert:
+         public CheckingAccount() {
+           this.amount = 100;
+         }
+      F. At line N1 insert:
+         public CheckingAccount() {
+           acct.amount = 100;
+         }
